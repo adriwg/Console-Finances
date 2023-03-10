@@ -86,3 +86,19 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+var totalMonths = finances.length;
+var total_amt_profit_loss = 0;
+
+for(var i = 0; i < finances.length; i++) {
+  total_amt_profit_loss += finances[i][1];
+}
+
+
+console.log("Financial Analysis");
+console.log("------------------");
+console.log("Total Months: " + totalMonths);
+console.log("Total: $" + total_amt_profit_loss);
+
+
+
