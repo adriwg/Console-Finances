@@ -89,16 +89,35 @@ var finances = [
 
 var totalMonths = finances.length;
 var total_amt_profit_loss = 0;
+var prevMthProfitLoss = 0;
+var changes_profit_loss_mth_to_mth = 0;
+var total_change_profit_loss_mth_to_mth = 0;
+var average_change_profit_loss = 0;
+
 
 for(var i = 0; i < finances.length; i++) {
   total_amt_profit_loss += finances[i][1];
 }
+
+for(var i = 0; i < finances.length; i++) {
+  if(i==0){
+    prevMthProfitLoss = finances[0][1];
+  }else{
+    changes_profit_loss_mth_to_mth = finances[i][1] - prevMthProfitLoss;
+    prevMthProfitLoss =  finances[i][1];
+    total_change_profit_loss_mth_to_mth += changes_profit_loss_mth_to_mth;
+  }
+}
+
+average_change_profit_loss = (total_change_profit_loss_mth_to_mth/(totalMonths - 1)).toFixed(2);
 
 
 console.log("Financial Analysis");
 console.log("------------------");
 console.log("Total Months: " + totalMonths);
 console.log("Total: $" + total_amt_profit_loss);
+console.log("Average Change: " + average_change_profit_loss);
+
 
 
 
