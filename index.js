@@ -84,7 +84,7 @@ var finances = [
   ['Nov-2016', 795914],
   ['Dec-2016', 60988],
   ['Jan-2017', 138230],
-  ['Feb-2017', 671099],
+  ['Feb-2017', 671099]
 ];
 
 var totalMonths = finances.length;
@@ -93,22 +93,35 @@ var prevMthProfitLoss = 0;
 var changes_profit_loss_mth_to_mth = 0;
 var total_change_profit_loss_mth_to_mth = 0;
 var average_change_profit_loss = 0;
+var greatest_increase_profit_loss =0;
+var greatest_increase_profit_loss_mth = "";
+var greatest_decrease_profit_loss =0;
+var greatest_decrease_profit_loss_mth = "";
 
 
 for(var i = 0; i < finances.length; i++) {
+// The net total amount of Profit/Losses over the entire period
   total_amt_profit_loss += finances[i][1];
-}
-
-for(var i = 0; i < finances.length; i++) {
+  //Calculate the changes in  Profit/Losses from month to month
   if(i==0){
-    prevMthProfitLoss = finances[0][1];
+    prevMthProfitLoss = finances[0][1];// assign initial value of previous month profit/losses
   }else{
-    changes_profit_loss_mth_to_mth = finances[i][1] - prevMthProfitLoss;
-    prevMthProfitLoss =  finances[i][1];
+    changes_profit_loss_mth_to_mth = finances[i][1] - prevMthProfitLoss; 
+    if(changes_profit_loss_mth_to_mth > greatest_increase_profit_loss){
+       // Find out the greatest increase in Profit/Losses(date and amount)
+      greatest_increase_profit_loss = changes_profit_loss_mth_to_mth;
+      greatest_increase_profit_loss_mth = finances[i][0];
+    }else if(changes_profit_loss_mth_to_mth < greatest_decrease_profit_loss){
+      // Find out the greatest decrease in Profit/Losses(date and amount)
+      greatest_decrease_profit_loss = changes_profit_loss_mth_to_mth;
+      greatest_decrease_profit_loss_mth = finances[i][0];
+    }
+    prevMthProfitLoss =  finances[i][1];// update previous month profit/losses
     total_change_profit_loss_mth_to_mth += changes_profit_loss_mth_to_mth;
   }
 }
 
+// The average of the changes in Profit/Losses over the entire period round up to the nearest 100th
 average_change_profit_loss = (total_change_profit_loss_mth_to_mth/(totalMonths - 1)).toFixed(2);
 
 
@@ -117,6 +130,8 @@ console.log("------------------");
 console.log("Total Months: " + totalMonths);
 console.log("Total: $" + total_amt_profit_loss);
 console.log("Average Change: " + average_change_profit_loss);
+console.log("Greatest Increase in Profits/Losses: " + greatest_increase_profit_loss_mth + " ($" + greatest_increase_profit_loss + ")");
+console.log("Greatest Decrease in Profits/Losses: " + greatest_decrease_profit_loss_mth + " ($" + greatest_decrease_profit_loss + ")");
 
 
 
