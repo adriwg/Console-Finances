@@ -9,8 +9,7 @@ Using JavaScript to analyze the financial records of a company with a provided f
 N/A
 
 ## Usage
-
-The portfolio is designed to be responsive and can be accessed through the link on PC and mobile devices:
+Link of the page:
 [Link text](https://adriwg.github.io/Console-Finances/)
 
 ### Screenshots
